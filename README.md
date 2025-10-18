@@ -1,5 +1,5 @@
 # Ex.08 Design of Interactive Image Gallery
-## Date:144/10/2025
+## Date:14/10/2025
 
 ## AIM:
 To design a web application for an inteactive image gallery with minimum five images.
@@ -23,96 +23,130 @@ Validate the HTML and CSS code.
 
 ### Step 6:
 Publish the website in the given URL.
-gallery.html
+## Program
 ```
-<!doctype html>
-<html lang="en">
+html
+
+!DOCTYPE html>
+<html>
 <head>
-  <meta charset="utf-8">
-  <title>Image Gallery</title>
+  <title>Simple Image Gallery</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <h2> &#128247My Image Gallery</h2>
+
   <div class="gallery">
-    <img src="a2.jpg" id="image1" alt="Person 2">
-    <img src="a3.jpg" id="image2" alt="Person 3">
-    <img src="a4.jpg" id="image3" alt="Person 4">
-    <img src="a5.jpg" id="image4" alt="Person 5">
+    <img src="image1.jppg" alt="Photo 1">
+    <img src="image2.jpg" alt="Photo 2">
+    <img src="image3.jpg" alt="Photo 3">
+    <img src="image4.jpg" alt="Photo 4">
+    <img src="image5.jpg" alt="Photo 5">
   </div>
 
-  <footer>
-    <h1>&copy; DESIGNED BY:</h1>
-    <h2> NKK</h2>
-  </footer>
+  <div class="popup" id="popup">
+    <span id="close">&times;</span>
+    <img id="popupImg" src="">
+  </div>
+  <center>
+    <h3>&copy;Image Gallery Designed by:</h3>
+    <h2>Muzammil</h2>
+  </center>
 
-  <script src="script.js"></script>
+  <script src="zoom.js"></script>
 </body>
 </html>
-```
-script.js
-```
-const images = document.querySelectorAll('.gallery img');
 
-images.forEach(image => {
-  image.addEventListener('mouseover', () => {
-    image.style.transform = 'scale(1.2) rotate(2deg)';
-    image.style.boxShadow = '0 20px 40px rgba(0,0,0,0.6)';
-  });
-
-  image.addEventListener('mouseout', () => {
-    image.style.transform = 'scale(1) rotate(0deg)';
-    image.style.boxShadow = '';
-  });
-});
-```
-style.css
-```
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+css
 
 body {
-  background: linear-gradient(180deg, rgba(255, 0, 0, 0.6), #8e906f, #384043, #50565f);
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  color: white;
-  text-align: center;
-  padding: 40px 0;
+  background: #eee;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h2 {
+  margin: 20px;
 }
 
 .gallery {
   display: flex;
-  justify-content: center;
-  gap: 30px;
   flex-wrap: wrap;
-  margin-top: 100px;
+  justify-content: center;
+  gap: 15px;
+  padding: 20px;
 }
 
 .gallery img {
   width: 200px;
   height: 250px;
-  border: 8px solid rgb(255, 0, 0);
+  object-fit: cover;
   border-radius: 10px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
+  transition: transform 0.2s;
 }
 
-footer {
-  margin-top: 80px;
+.gallery img:hover {
+  transform: scale(1.05);
 }
 
-h1 {
-  font-size: 25px;
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
 }
 
-h2 {
-  font-size: 22px;
-  color: #fff;
+.popup img {
+  width: 60%;
+  max-width: 400px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #000;
 }
+
+.popup span {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+ javascript
+
+ const popup = document.getElementById('popup');
+const popupImg = document.getElementById('popupImg');
+const closeBtn = document.getElementById('close');
+
+document.querySelectorAll('.gallery img').forEach(img => {
+  img.addEventListener('click', () => {
+    popup.style.display = 'flex';
+    popupImg.src = img.src;
+  });
+});
+
+closeBtn.addEventListener('click', () => {
+  popup.style.display = 'none';
+});
+
+popup.addEventListener('click', e => {
+  if (e.target === popup) popup.style.display = 'none';
+});
+
 ```
 ## OUTPUT
-<img width="1920" height="1080" alt="Screenshot 2025-10-10 165658" src="https://github.com/user-attachments/assets/67442ec7-02bd-4cfa-8278-21886e9ba5cf" />
+<img width="1918" height="1022" alt="Screenshot 2025-10-18 171122" src="https://github.com/user-attachments/assets/1b30d630-3727-476e-b344-12d1e879efa2" />
+
 
 
 
